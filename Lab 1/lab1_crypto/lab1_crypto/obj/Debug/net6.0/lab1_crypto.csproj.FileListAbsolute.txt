@@ -1,0 +1,15 @@
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_crypto\lab1_crypto\bin\Debug\net6.0\lab1_crypto.exe
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_crypto\lab1_crypto\bin\Debug\net6.0\lab1_crypto.deps.json
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_crypto\lab1_crypto\bin\Debug\net6.0\lab1_crypto.runtimeconfig.json
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_crypto\lab1_crypto\bin\Debug\net6.0\lab1_crypto.dll
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_crypto\lab1_crypto\bin\Debug\net6.0\lab1_crypto.pdb
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_crypto\lab1_crypto\obj\Debug\net6.0\lab1_crypto.csproj.AssemblyReference.cache
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_crypto\lab1_crypto\obj\Debug\net6.0\lab1_crypto.GeneratedMSBuildEditorConfig.editorconfig
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_crypto\lab1_crypto\obj\Debug\net6.0\lab1_crypto.AssemblyInfoInputs.cache
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_crypto\lab1_crypto\obj\Debug\net6.0\lab1_crypto.AssemblyInfo.cs
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_crypto\lab1_crypto\obj\Debug\net6.0\lab1_crypto.csproj.CoreCompileInputs.cache
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_crypto\lab1_crypto\obj\Debug\net6.0\lab1_crypto.dll
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_crypto\lab1_crypto\obj\Debug\net6.0\refint\lab1_crypto.dll
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_crypto\lab1_crypto\obj\Debug\net6.0\lab1_crypto.pdb
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_crypto\lab1_crypto\obj\Debug\net6.0\lab1_crypto.genruntimeconfig.cache
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_crypto\lab1_crypto\obj\Debug\net6.0\ref\lab1_crypto.dll

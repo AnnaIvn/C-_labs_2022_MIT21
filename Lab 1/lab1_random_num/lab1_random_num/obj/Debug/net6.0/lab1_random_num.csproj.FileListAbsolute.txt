@@ -1,0 +1,15 @@
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_random_num\lab1_random_num\bin\Debug\net6.0\lab1_random_num.exe
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_random_num\lab1_random_num\bin\Debug\net6.0\lab1_random_num.deps.json
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_random_num\lab1_random_num\bin\Debug\net6.0\lab1_random_num.runtimeconfig.json
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_random_num\lab1_random_num\bin\Debug\net6.0\lab1_random_num.dll
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_random_num\lab1_random_num\bin\Debug\net6.0\lab1_random_num.pdb
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_random_num\lab1_random_num\obj\Debug\net6.0\lab1_random_num.csproj.AssemblyReference.cache
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_random_num\lab1_random_num\obj\Debug\net6.0\lab1_random_num.GeneratedMSBuildEditorConfig.editorconfig
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_random_num\lab1_random_num\obj\Debug\net6.0\lab1_random_num.AssemblyInfoInputs.cache
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_random_num\lab1_random_num\obj\Debug\net6.0\lab1_random_num.AssemblyInfo.cs
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_random_num\lab1_random_num\obj\Debug\net6.0\lab1_random_num.csproj.CoreCompileInputs.cache
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_random_num\lab1_random_num\obj\Debug\net6.0\lab1_random_num.dll
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_random_num\lab1_random_num\obj\Debug\net6.0\refint\lab1_random_num.dll
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_random_num\lab1_random_num\obj\Debug\net6.0\lab1_random_num.pdb
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_random_num\lab1_random_num\obj\Debug\net6.0\lab1_random_num.genruntimeconfig.cache
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 1\lab1_random_num\lab1_random_num\obj\Debug\net6.0\ref\lab1_random_num.dll
