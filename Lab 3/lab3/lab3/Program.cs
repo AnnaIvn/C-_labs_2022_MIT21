@@ -17,6 +17,8 @@ namespace lab3
                 Console.WriteLine("Options:");
                 Console.WriteLine("1 - part 1, hashing using different algoritms");
                 Console.WriteLine("2 - part 2, cracking using brute force");
+                Console.WriteLine("3 - part 3, hashing with hmac");
+                Console.WriteLine("4 - part 4, registrating a user + authentification");
                 Console.WriteLine("0 - exit");
                 Console.Write("Your option -> ");
                 option = Console.ReadLine();
@@ -45,6 +47,7 @@ namespace lab3
                     Console.WriteLine("");
 
                 }
+                
                 else if (option == "2")                                                  // decription, the same
                 {
 
@@ -140,11 +143,225 @@ namespace lab3
 
                     // password is -> 20192020
                 }
+                
+                else if (option == "3")
+                {
+                    int amountSHA1 = 20;       // length of keys for each method on heshing; 20 bytes
+                    int amountSHA256 = 32;     // 32 bytes
+                    int amountSHA512 = 64;     // 64 bytes
+
+                    // getting message that needs to be hashed
+                    Console.Write("Enter message for which you want a hash codes to be calculated ->  ");
+                    string message = Console.ReadLine();
+
+                    Console.WriteLine("");
+                    Console.WriteLine("Hashing your message . . .");
+                    Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+                    byte[] messageInArray = Encoding.Unicode.GetBytes(message);        // put string in byte array (масив)
+
+                    // making keys
+                    byte[] keySHA1 = cryptoKey(amountSHA1);
+                    byte[] keySHA256 = cryptoKey(amountSHA256);
+                    byte[] keySHA512 = cryptoKey(amountSHA512);
+
+
+                    // hashing
+                    //var HmacSHA1 = ComputeHmacSHA1(Encoding.Unicode.GetBytes(message, keySHA1)); // or we can write like this
+                    var HmacSHA1 = ComputeHmacSHA1(messageInArray, keySHA1);
+                    var HmacSHA256 = ComputeHmacSHA256(messageInArray, keySHA256);  // call functions
+                    var HmacSHA512 = ComputeHmacSHA512(messageInArray, keySHA512);
+
+                    Console.WriteLine($"HMAC SHA1:{Convert.ToBase64String(HmacSHA1)}"); // convert to string (to display)
+                    Console.ReadLine();
+                    Console.WriteLine($"HMAC SHA256:{Convert.ToBase64String(HmacSHA256)}");
+                    Console.ReadLine();
+                    Console.WriteLine($"HMAC SHA512:{Convert.ToBase64String(HmacSHA512)}");
+                    Console.WriteLine("");
+
+
+                    // making other hashes
+                    Console.WriteLine("Making anothed hash (for cheking)  . . .");
+                    Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+
+                    var Hmac2SHA1 = ComputeHmacSHA1(messageInArray, keySHA1);
+                    var Hmac2SHA256 = ComputeHmacSHA256(messageInArray, keySHA256);  // call functions
+                    var Hmac2SHA512 = ComputeHmacSHA512(messageInArray, keySHA512);
+
+                    Console.WriteLine($"HMAC SHA1 (second hashing):{Convert.ToBase64String(Hmac2SHA1)}"); // convert to string (to display)
+                    Console.ReadLine();
+                    Console.WriteLine($"HMAC SHA256 (second hashing):{Convert.ToBase64String(Hmac2SHA256)}");
+                    Console.ReadLine();
+                    Console.WriteLine($"HMAC SHA512 (second hashing):{Convert.ToBase64String(Hmac2SHA512)}");
+                    Console.WriteLine("");
+
+
+                    // checking
+                    Console.WriteLine("Checking your hashed message for accuracy (comparing hashes)  . . .");
+                    Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+
+                    CheckHash(HmacSHA1, Hmac2SHA1);
+                    CheckHash(HmacSHA256, Hmac2SHA256);
+                    CheckHash(HmacSHA512, Hmac2SHA512);
+
+                    Console.Write("HMAC SHA1 check: ");
+                    Console.ReadLine();
+                    Console.Write("HMAC SHA256 check: ");
+                    Console.ReadLine();
+                    Console.Write("HMAC SHA512 check: ");
+                    Console.ReadLine();
+                    Console.WriteLine("");
+                    Console.WriteLine("");
+
+                }
+                
+                else if (option == "4")
+                {
+                    // length of keys for each method of hashing
+                    int amountSHA1 = 20, amountSHA256 = 32, amountSHA512 = 64;
+
+                    // initializing passwords, usernames
+                    string username, password, usernameCheck, passwordCheck;
+
+                    // initializing salt(key) arrays
+                    byte[] keySHA1, keySHA256, keySHA512, passwordInArray;
+
+
+                    // user initialisation
+                    Console.WriteLine();
+                    Console.WriteLine("Starting user registration ");
+                    Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+                    Console.Write("Enter your username ->  ");
+                    username = Console.ReadLine();                          // getting username
+                    Console.Write("Enter your password ->  ");
+                    password = Console.ReadLine();                          // getting password
+                    Console.WriteLine();
+                    Console.WriteLine();
+
+                    passwordInArray = Encoding.Unicode.GetBytes(password);  // putting password in array
+
+                    // making keys
+                    keySHA1 = cryptoKey(amountSHA1);
+                    keySHA256 = cryptoKey(amountSHA256);
+                    keySHA512 = cryptoKey(amountSHA512);
+
+                    // hashing
+                    //var HmacSHA1 = ComputeHmacSHA1(Encoding.Unicode.GetBytes(message, keySHA1)); // or we can write like this
+                    var HmacSHA1 = ComputeHmacSHA1(passwordInArray, keySHA1);
+                    var HmacSHA256 = ComputeHmacSHA256(passwordInArray, keySHA256);  // call functions
+                    var HmacSHA512 = ComputeHmacSHA512(passwordInArray, keySHA512);
+
+                    Console.WriteLine("Your hashed using ...");       // output
+                    Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+                    Console.WriteLine();
+                    Console.WriteLine("SHA1: " + Convert.ToBase64String(HmacSHA1));
+                    Console.ReadLine();                                                                                // for delay
+                    Console.WriteLine("SHA256: " + Convert.ToBase64String(HmacSHA256));
+                    Console.ReadLine();
+                    Console.WriteLine("SHA512:  " + Convert.ToBase64String(HmacSHA512));
+                    Console.ReadLine();
+                    Console.WriteLine();
+
+
+                    // starting user authentification
+                    Console.WriteLine("Starting user authentification ");
+                    Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+                    Console.Write("Enter your username ->  ");
+                    usernameCheck = Console.ReadLine();               // getting username
+                    Console.Write("Enter your password ->  ");
+                    passwordCheck = Console.ReadLine();               // getting password
+
+                    var Hmac2SHA1 = ComputeHmacSHA1(passwordInArray, keySHA1);
+                    var Hmac2SHA256 = ComputeHmacSHA256(passwordInArray, keySHA256);  // call functions
+                    var Hmac2SHA512 = ComputeHmacSHA512(passwordInArray, keySHA512);
+
+                    Console.WriteLine("Your hashed password using ...");    // output
+                    Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+                    Console.WriteLine();
+                    Console.WriteLine("SHA1: " + Convert.ToBase64String(Hmac2SHA1));
+                    Console.ReadLine();                                                                                // for delay
+                    Console.WriteLine("SHA256: " + Convert.ToBase64String(Hmac2SHA256));
+                    Console.ReadLine();
+                    Console.WriteLine("SHA512:  " + Convert.ToBase64String(Hmac2SHA512));
+                    Console.ReadLine();
+                    Console.WriteLine();
+
+
+                    // checking
+                    Console.WriteLine("Checking your hashed password  ...");
+                    Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+                    Console.ReadLine();
+
+                    CheckHash(HmacSHA1, Hmac2SHA1);
+                    CheckHash(HmacSHA256, Hmac2SHA256);
+                    CheckHash(HmacSHA512, Hmac2SHA512);
+
+                    Console.Write("HMAC SHA1 check: ");
+                    Console.ReadLine();
+                    Console.Write("HMAC SHA256 check: ");
+                    Console.ReadLine();
+                    Console.Write("HMAC SHA512 check: ");
+                    Console.WriteLine("");
+                    Console.WriteLine("");
+                }
 
             } while (option != "0"); 
-
         }
 
+
+        // checking hashes for accuracy
+        public static int CheckHash(byte[] hash1, byte[] hash2)
+        {
+            if (Convert.ToBase64String(hash1) == Convert.ToBase64String(hash2))
+            {
+                Console.WriteLine("Hashes of message are accurate");
+            }
+            else
+            {
+                Console.WriteLine("Hashes aren`t accurate. Message is corrupted");
+            }
+            return 1;
+        }
+
+
+        // generating key
+        public static byte[] cryptoKey(int amount)    
+        {
+            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider()) // class, that we are using, об`явлення
+            {
+                var Key = new byte[amount];
+                rng.GetBytes(Key);
+                return Key;
+            }
+        }
+
+
+        // hmac hash functions  (for options 3-4)
+        public static byte[] ComputeHmacSHA1(byte[] toBeHashed, byte[] key)
+        {
+            using (var hmac = new HMACSHA1(key))
+            {
+                return hmac.ComputeHash(toBeHashed);
+            }
+        }
+
+        public static byte[] ComputeHmacSHA256(byte[] toBeHashed, byte[] key)
+        {
+            using (var hmac = new HMACSHA256(key))
+            {
+                return hmac.ComputeHash(toBeHashed);
+            }
+        }
+
+        public static byte[] ComputeHmacSHA512(byte[] toBeHashed, byte[] key)
+        {
+            using (var hmac = new HMACSHA512(key))
+            {
+                return hmac.ComputeHash(toBeHashed);
+            }
+        }
+
+
+        // hash functions (for options 1-2)
         static byte[] ComputeHashMd5(byte[] messageInArray)
         {
             using (var md5 = MD5.Create())
@@ -184,5 +401,6 @@ namespace lab3
                 return sha512.ComputeHash(messageInArray);
             }
         }
+        
     }
 }
