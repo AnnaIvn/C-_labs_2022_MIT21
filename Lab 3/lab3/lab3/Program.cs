@@ -199,15 +199,14 @@ namespace lab3
                     Console.WriteLine("Checking your hashed message for accuracy (comparing hashes)  . . .");
                     Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
 
+                    Console.Write("SHA1 check: ");
                     CheckHash(HmacSHA1, Hmac2SHA1);
+                    Console.ReadLine();
+                    Console.Write("SHA256 check: ");
                     CheckHash(HmacSHA256, Hmac2SHA256);
+                    Console.ReadLine();
+                    Console.Write("SHA512 check: ");
                     CheckHash(HmacSHA512, Hmac2SHA512);
-
-                    Console.Write("HMAC SHA1 check: ");
-                    Console.ReadLine();
-                    Console.Write("HMAC SHA256 check: ");
-                    Console.ReadLine();
-                    Console.Write("HMAC SHA512 check: ");
                     Console.ReadLine();
                     Console.WriteLine("");
                     Console.WriteLine("");
@@ -291,15 +290,15 @@ namespace lab3
                     Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
                     Console.ReadLine();
 
+                    Console.Write("SHA1 check: ");
                     CheckHash(HmacSHA1, Hmac2SHA1);
+                    Console.ReadLine();
+                    Console.Write("SHA256 check: ");
                     CheckHash(HmacSHA256, Hmac2SHA256);
+                    Console.ReadLine();
+                    Console.Write("SHA512 check: ");
                     CheckHash(HmacSHA512, Hmac2SHA512);
-
-                    Console.Write("HMAC SHA1 check: ");
                     Console.ReadLine();
-                    Console.Write("HMAC SHA256 check: ");
-                    Console.ReadLine();
-                    Console.Write("HMAC SHA512 check: ");
                     Console.WriteLine("");
                     Console.WriteLine("");
                 }
