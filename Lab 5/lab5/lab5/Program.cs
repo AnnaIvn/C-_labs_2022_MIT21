@@ -21,6 +21,7 @@ namespace lab3
                 Console.WriteLine("  | 2 - part 2, hashing with salt + iterations");
                 Console.WriteLine("  | 3 - part 2, hashing with salt + iterations, acording to variant");   // 10 значень із кроком 50'000; перше значення = номер варіанта * 10'000; variant = 11
                 Console.WriteLine("  | 4 - part 3, authentification (with salt + iteration)");         // Число ітерацій = номер варіанта * 10'000.
+                Console.WriteLine("  | 5 - as part 2 but in lesser code");
                 Console.WriteLine("  | 0 - exit");
                 Console.WriteLine();
                 Console.Write("   Your option -> ");
@@ -1181,6 +1182,158 @@ namespace lab3
 
                 }
 
+                else if (option == "5")
+                {
+                    // length of keys for each method of hashing
+                    int saltLengthMD5 = 16, saltLengthSHA1 = 20, saltLengthSHA256 = 32,
+                        saltLengthSHA384 = 48, saltLengthSHA512 = 64;
+
+                    // initializing passwords, usernames
+                    string username, password, usernameCheck, passwordCheck, variant;
+
+                    // initializing salt(key) arrays
+                    byte[] saltMD5, saltSHA1, saltSHA256, saltSHA384, saltSHA512, passwordInArray;
+
+                    // значення із кроком 50'000; перше значення = номер варіанта * 10'000;
+                    int numOfRounds = 110000;
+                    
+                    // for output
+                    string nameMD5 = " MD5", nameSHA1 = " SHA1", nameSHA256 = " SHA256", 
+                           nameSHA384 = " SHA384", nameSHA512 = " SHA512";
+
+                    // user initialisation
+                    Console.WriteLine();
+                    Console.WriteLine(" Starting user registration ");
+                    Console.WriteLine(" -----------------------------------------------------------------------------------------------------------------------");
+                    Console.Write(" Enter your username ->  ");
+                    username = Console.ReadLine();                          // getting username
+                    Console.Write(" Enter your password ->  ");
+                    password = Console.ReadLine();                          // getting password
+                    Console.WriteLine();
+                    Console.WriteLine();
+
+                    passwordInArray = Encoding.Unicode.GetBytes(password);  // putting password in array
+
+                    // making keys (salt)
+                    saltMD5 = cryptoKey(saltLengthMD5);
+                    saltSHA1 = cryptoKey(saltLengthSHA1);
+                    saltSHA256 = cryptoKey(saltLengthSHA256);
+                    saltSHA384 = cryptoKey(saltLengthSHA384);
+                    saltSHA512 = cryptoKey(saltLengthSHA512);
+
+
+                    do
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("  | Chose hashing algorithm (all variants use salt + iteraions) :");
+                        Console.WriteLine("  | 1 - MD5");
+                        Console.WriteLine("  | 2 - SHA1");
+                        Console.WriteLine("  | 3 - SHA256");
+                        Console.WriteLine("  | 4 - SHA384");
+                        Console.WriteLine("  | 5 - SHA512");
+                        Console.WriteLine("  | 0 - exit");
+                        Console.WriteLine();
+                        Console.Write("   Your variant -> ");
+                        variant = Console.ReadLine();
+                        Console.WriteLine();
+
+                        if (variant == "1")
+                        {
+                            // for MD5 hashes using different round numbers
+                            Console.WriteLine(" Your hashed (using MD5 + different rounds) password using ...");       // output
+                            Console.WriteLine(" -----------------------------------------------------------------------------------------------------------------------");
+                            for (int i = 0; i < 10; i++)
+                            {
+                                ModernizedPBKDF2.HashPasswordModernized(passwordInArray, saltMD5, numOfRounds, saltLengthMD5, nameMD5);
+                                numOfRounds += 50000;
+                            }
+                            numOfRounds = 110000;
+                            Console.WriteLine();
+                            Console.WriteLine("  | Press Enter to continue");
+                            Console.ReadLine();
+                            Console.WriteLine();
+                        }
+
+                        else if (variant == "2")
+                        {
+                            // for SHA1 hashes using different round numbers
+                            Console.WriteLine(" Your hashed (using SHA1 + different rounds) password using ...");       // output
+                            Console.WriteLine(" -----------------------------------------------------------------------------------------------------------------------");
+                            for (int i = 0; i < 10; i++)
+                            {
+                                ModernizedPBKDF2.HashPasswordModernized(passwordInArray, saltSHA1, numOfRounds, saltLengthSHA1, nameSHA1);
+                                numOfRounds += 50000;
+                            }
+
+                            numOfRounds = 110000;
+                            Console.WriteLine();
+                            Console.WriteLine("  | Press Enter to continue");
+                            Console.ReadLine();
+                            Console.WriteLine();
+                        }
+
+                        else if (variant == "3")
+                        {
+                            Console.WriteLine("  | You may need to wait a little bit");
+                            Console.WriteLine();
+                            // for SHA256 hashes using different round numbers
+                            Console.WriteLine(" Your hashed (using SHA256 + different rounds) password using ...");       // output
+                            Console.WriteLine(" -----------------------------------------------------------------------------------------------------------------------");
+                            for (int i = 0; i < 10; i++)
+                            {
+                                ModernizedPBKDF2.HashPasswordModernized(passwordInArray, saltSHA256, numOfRounds, saltLengthSHA256, nameSHA256);
+                                numOfRounds += 50000;
+                            }
+                            numOfRounds = 110000;
+                            Console.WriteLine();
+                            Console.WriteLine("  | Press Enter to continue");
+                            Console.ReadLine();
+                            Console.WriteLine();
+                        }
+
+                        else if (variant == "4")
+                        {
+                            Console.WriteLine("  | You may need to wait a little bit");
+                            Console.WriteLine();
+                            // for SHA386 hashes using different round numbers
+                            Console.WriteLine(" Your hashed (using SHA386 + different rounds) password using ...");       // output
+                            Console.WriteLine(" -----------------------------------------------------------------------------------------------------------------------");
+                            for (int i = 0; i < 10; i++)
+                            {
+                                ModernizedPBKDF2.HashPasswordModernized(passwordInArray, saltSHA384, numOfRounds, saltLengthSHA384, nameSHA384);
+                                numOfRounds += 50000;
+                            }
+                            numOfRounds = 110000;
+                            Console.WriteLine();
+                            Console.WriteLine("  | Press Enter to continue");
+                            Console.ReadLine();
+                            Console.WriteLine();
+                        }
+
+                        else if (variant == "5")
+                        {
+                            Console.WriteLine("  | You may need to wait a little bit");
+                            Console.WriteLine();
+                            // for SHA512 hashes using different round numbers
+                            Console.WriteLine(" Your hashed (using SHA512 + different rounds) password using ...");       // output
+                            Console.WriteLine(" -----------------------------------------------------------------------------------------------------------------------");
+                            for (int i = 0; i < 10; i++)
+                            {
+                                ModernizedPBKDF2.HashPasswordModernized(passwordInArray, saltSHA512, numOfRounds, saltLengthSHA512, nameSHA512);
+                                numOfRounds += 50000;
+                            }
+                            numOfRounds = 110000;
+                            Console.WriteLine();
+                            Console.WriteLine("  | Press Enter to continue");
+                            Console.ReadLine();
+                            Console.WriteLine();
+                        }
+
+
+                    } while (variant != "0");
+
+                }
+
             } while (option != "0");
         }
 
@@ -1297,7 +1450,7 @@ namespace lab3
             }
         }
 
-        // password based key deprivation function
+        // password based key deprivation function, for option3,4
         public class PBKDF2
         {
             public static byte[] HashPassword(byte[] toBeHashed, byte[] salt, int numberOfRounds, int bytes)
@@ -1306,6 +1459,24 @@ namespace lab3
                 {
                     return rfc2898.GetBytes(bytes);
                 }
+            }
+        }
+
+        // password based key deprivation function, for option5
+        public class ModernizedPBKDF2
+        {
+            public static void HashPasswordModernized(byte[] toBeHashed, byte[] salt, int numberOfRounds, int bytes, string method)
+            {
+                    using (var rfc2898 = new Rfc2898DeriveBytes(toBeHashed, salt, numberOfRounds))
+                    {
+                        var watch = Stopwatch.StartNew();
+                        var Hashed = rfc2898.GetBytes(bytes);
+                        watch.Stop();
+                        System.TimeSpan time = watch.Elapsed;
+                        
+                        Console.WriteLine(" " + numberOfRounds + method + ": " + Convert.ToBase64String(Hashed) + " Time: " + time);
+                    }
+                return;
             }
         }
 
