@@ -1,0 +1,15 @@
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 7\lab 7\lab 7\obj\Debug\net6.0\lab 7.csproj.AssemblyReference.cache
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 7\lab 7\lab 7\obj\Debug\net6.0\lab 7.GeneratedMSBuildEditorConfig.editorconfig
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 7\lab 7\lab 7\obj\Debug\net6.0\lab 7.AssemblyInfoInputs.cache
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 7\lab 7\lab 7\obj\Debug\net6.0\lab 7.AssemblyInfo.cs
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 7\lab 7\lab 7\obj\Debug\net6.0\lab 7.csproj.CoreCompileInputs.cache
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 7\lab 7\lab 7\bin\Debug\net6.0\lab 7.exe
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 7\lab 7\lab 7\bin\Debug\net6.0\lab 7.deps.json
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 7\lab 7\lab 7\bin\Debug\net6.0\lab 7.runtimeconfig.json
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 7\lab 7\lab 7\bin\Debug\net6.0\lab 7.dll
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 7\lab 7\lab 7\bin\Debug\net6.0\lab 7.pdb
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 7\lab 7\lab 7\obj\Debug\net6.0\lab 7.dll
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 7\lab 7\lab 7\obj\Debug\net6.0\refint\lab 7.dll
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 7\lab 7\lab 7\obj\Debug\net6.0\lab 7.pdb
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 7\lab 7\lab 7\obj\Debug\net6.0\lab 7.genruntimeconfig.cache
+D:\Lessons\2nd Year\Основи інформаційної безпеки\Labs\Lab 7\lab 7\lab 7\obj\Debug\net6.0\ref\lab 7.dll
