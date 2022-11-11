@@ -441,7 +441,7 @@ namespace lab7
             {
                 rsa.PersistKeyInCsp = false;
                 rsa.FromXmlString(File.ReadAllText(publicKeyPath));   // we call FromXmlString and pass in the results of loading the key from disk
-                cipherbytes = rsa.Encrypt(dataToEncrypt, false);      // encryption
+                cipherbytes = rsa.Encrypt(dataToEncrypt, true);      // encryption
             }
             return cipherbytes;
         }
@@ -453,9 +453,22 @@ namespace lab7
             {
                 rsa.PersistKeyInCsp = false;
                 rsa.FromXmlString(File.ReadAllText(privateKeyPath));
-                plain = rsa.Decrypt(dataToDecrypt, false);            // decryption
+                plain = rsa.Decrypt(dataToDecrypt, true);            // decryption
             }
             return plain;
+        }
+
+        public static byte[] EncryptData2(byte[] dataToEncrypt, string publicKeyPath, string path)
+        {
+            byte[] cipherbytes;
+            using (var rsa = new RSACryptoServiceProvider(2048))
+            {
+                rsa.PersistKeyInCsp = false;
+                rsa.FromXmlString(File.ReadAllText(publicKeyPath));
+                cipherbytes = rsa.Encrypt(dataToEncrypt, true);
+            }
+            File.WriteAllBytes(path, cipherbytes);
+            return cipherbytes;
         }
     }
 
