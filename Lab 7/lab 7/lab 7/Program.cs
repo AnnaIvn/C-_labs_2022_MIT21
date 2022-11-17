@@ -25,6 +25,7 @@ namespace lab7
             string privateKeyPath = path + "/privateKey.xml";
             string encrFilePath2 = path + "/encryptedText.txt";     // full path for XML case
             string nameOfEncrFile2 = "encryptedText.txt";           // just name of encrypted file
+            string pathForDecrFile = path + "/decryptedText.txt";
             
             // initializing arrays
             byte[] dataInArray, encrInArray;
@@ -35,7 +36,8 @@ namespace lab7
                 Console.WriteLine("  | Options:");
                 Console.WriteLine("  | 1 - part 1, asymetryc encryption (RSA - In-memory keys)");
                 Console.WriteLine("  | 2 - part 2, asymetryc encryption (XML - Public key in file - with multiple saving options)");
-                Console.WriteLine("  | 3 - part 3, asymetryc encryption (CSP - using Container - with optional public key)");
+                Console.WriteLine("  | 3 - part 3, asymetryc encryption USING UTF8 (with optional public key)");
+                Console.WriteLine("  | 4 - part 3, asymetryc encryption (saving key in container)");
                 Console.WriteLine("  | 0 - exit");
                 Console.WriteLine();
                 Console.Write("   Your option -> ");
@@ -162,7 +164,7 @@ namespace lab7
                                     string privatePathYes = path + "/" + yourPrivateFileName + ".xml";     // private path
                                     encrInArray = File.ReadAllBytes(encrPathYes);            // encrypted byte array
                                     var decryptedInArray = xmlParams.DecryptDataInFile(privatePathYes, encrInArray);  // decrypted byte array
-                                    decrStr = Encoding.Default.GetString(decryptedInArray);                           // decrypted string
+                                    decrStr = Encoding.Unicode.GetString(decryptedInArray);                           // decrypted string
                                     Console.WriteLine();
                                     Console.WriteLine(" Your decrepted message:  " + decrStr);
                                     otherFunctions.prettyOutput(2);
@@ -173,7 +175,7 @@ namespace lab7
                                     string encrPathNo = path + "/encryptedText.txt";     // encr path
                                     encrInArray = File.ReadAllBytes(encrPathNo);         // encrypted byte array
                                     var decryptedInArrayNo = xmlParams.DecryptDataInFile(privateKeyPath, encrInArray);  // decrypted byte array
-                                    decrStr = Encoding.Default.GetString(decryptedInArrayNo);
+                                    decrStr = Encoding.Unicode.GetString(decryptedInArrayNo);
                                     Console.WriteLine();
                                     Console.WriteLine(" Your decrepted message:  " + decrStr);
                                     otherFunctions.prettyOutput(2);
@@ -184,7 +186,7 @@ namespace lab7
                     }while(variant != "0");
                 }
 
-                // CSP ENCRYPTION
+                // XML ENCRYPTION (for part 3)
                 if (option == "3")
                 {
                     do
@@ -225,7 +227,7 @@ namespace lab7
                                             data = Console.ReadLine();                          // getting data
                                             Console.WriteLine();
                                             Console.WriteLine();
-                                            dataInArray = Encoding.Unicode.GetBytes(data);      // putting data in array
+                                            dataInArray = Encoding.UTF8.GetBytes(data);      // putting data in array
                                             var encryptedInArray = xmlParams.EncryptDataInFile(pubFileNamePath, dataInArray);  // encryption
                                             otherFunctions.onlyEncrypted(encryptedInArray);
                                             Console.Write(" Do you want to save your encrypted data in a file? (yes|no) -> ");
@@ -259,11 +261,6 @@ namespace lab7
                                                 case "no":
                                                     break;
 
-                                                //case "default":
-                                                //    File.WriteAllBytes(encrFilePath2, encryptedInArray);             // encrypted data array to the file
-                                                //    //BinaryFile.SaveByteArrayToFile(encryptedInArray, encrFilePath2); // encrypted data to the file                  
-                                                //    otherFunctions.fileNameOutput(nameOfEncrFile2);  // data into file output
-                                                //    break;
                                             }
                                             break;
 
@@ -286,10 +283,12 @@ namespace lab7
                                             data = Console.ReadLine();                          // getting data
                                             Console.WriteLine();
                                             Console.WriteLine();
-                                            dataInArray = Encoding.Unicode.GetBytes(data);      // putting data in array
+                                            dataInArray = Encoding.UTF8.GetBytes(data);      // putting data in array
                                             var encryptedInArray = xmlParams.EncryptDataInFile(publicKeyPath, dataInArray);  // encryption
                                             otherFunctions.onlyEncrypted(encryptedInArray);
-                                            //encrypted = Convert.ToBase64String(encryptedInArray);
+                                            
+                                            encrypted = Encoding.UTF8.GetString(encryptedInArray);
+                                            
                                             Console.Write(" Do you want to save your encrypted data in a file? (yes|no|default) -> ");
                                             saveOrNo = Console.ReadLine();    // save or no (default) encrypted file
                                             Console.WriteLine();
@@ -304,12 +303,16 @@ namespace lab7
                                                             Console.Write(" Enter name for your file (WITHOUT .txt, only name) -> ");
                                                             nameOfEncrFile = Console.ReadLine();
                                                             string encrFilePath1 = path + "/" + nameOfEncrFile + ".txt";     // path to the file
+                                                            
+                                                            //File.WriteAllText(encrFilePath1, encrypted);
                                                             File.WriteAllBytes(encrFilePath1, encryptedInArray);                     // encrypted data to the file
+                                                            
                                                             string nameOfEncrFileFull = nameOfEncrFile + ".txt";
                                                             otherFunctions.fileNameOutput(nameOfEncrFileFull);               // data into file output
                                                             break;
 
                                                         case "no":
+                                                            //File.WriteAllText(encrFilePath2, encrypted);
                                                             File.WriteAllBytes(encrFilePath2, encryptedInArray);        // encrypted data to the file
                                                             otherFunctions.fileNameOutput(nameOfEncrFile2);      // data into file output
                                                             break;
@@ -320,6 +323,7 @@ namespace lab7
                                                     break;
 
                                                 case "default":
+                                                    //File.WriteAllText(encrFilePath2, encrypted);
                                                     File.WriteAllBytes(encrFilePath2, encryptedInArray);
                                                     otherFunctions.fileNameOutput(nameOfEncrFile2);  // data into file output
                                                     break;
@@ -349,18 +353,25 @@ namespace lab7
                                     Console.WriteLine();
                                     string encrPathYes = path + "/" + yourEncrFileName + ".txt";           // encr path
                                     string privatePathYes = path + "/" + yourPrivateFileName + ".xml";     // private path
+                                    
+                                    //encrypted = File.ReadAllText(encrPathYes);
+                                    //encrInArray = Encoding.UTF8.GetBytes(encrypted);
+
                                     encrInArray = File.ReadAllBytes(encrPathYes);                          // encrypted byte array read from file
                                     var decryptedInArray = xmlParams.DecryptDataInFile(privatePathYes, encrInArray);  // decrypted byte array
-                                    decrStr = Encoding.Default.GetString(decryptedInArray);                           // decrypted string
+                                    decrStr = Encoding.UTF8.GetString(decryptedInArray);                           // decrypted string
                                     Console.WriteLine();
                                     Console.WriteLine(" Your decrepted message:  " + decrStr);
                                     otherFunctions.prettyOutput(2);
                                     break;
 
                                 case "no":
+                                    //encrypted = File.ReadAllText(encrFilePath2);
+                                    //encrInArray = Encoding.UTF8.GetBytes(encrypted);
+
                                     encrInArray = File.ReadAllBytes(encrFilePath2);         // encrypted byte array taken from file
                                     var decryptedInArrayNo = xmlParams.DecryptDataInFile(privateKeyPath, encrInArray);  // decrypted byte array
-                                    decrStr = Encoding.Default.GetString(decryptedInArrayNo);
+                                    decrStr = Encoding.UTF8.GetString(decryptedInArrayNo);
                                     Console.WriteLine();
                                     Console.WriteLine(" Your decrepted message:  " + decrStr);
                                     otherFunctions.prettyOutput(2);
@@ -368,6 +379,48 @@ namespace lab7
                             }
 
                         }  // end of variant 2
+                    } while (variant != "0");
+                }
+
+                // CSP ENCRYPTION
+                if (option == "4")
+                {
+                    do
+                    {
+                        Console.WriteLine();  // Starting data encryption
+                        Console.WriteLine(" Starting data encryption (CSP - using Container)");
+                        Console.WriteLine(" -----------------------------------------------------------------------------------------------------------------------");
+                        Console.WriteLine();
+                        Console.WriteLine("  | Choose variant: ");
+                        Console.WriteLine("  | 1 - encryption + decryption ");
+                        Console.WriteLine("  | 0 - exit");
+                        Console.WriteLine();
+                        Console.Write("  Your variant ->  ");
+                        variant = Console.ReadLine();
+                        Console.WriteLine();
+                        
+                        var cspParams = new Container();
+
+                        if (variant == "1")
+                        {
+                            //Container.AssignNewPubKey(publicKeyPath);
+                            Container.AssignNewKey(publicKeyPath, privateKeyPath);
+                            Console.Write(" Enter your data ->  ");
+                            data = Console.ReadLine();                          // getting data
+                            Console.WriteLine();
+                            Console.WriteLine();
+                            dataInArray = Encoding.UTF8.GetBytes(data);      // putting data in array
+                            var encryptedInArray = Container.EncryptData(dataInArray, publicKeyPath);  // encryption
+                            File.WriteAllBytes(encrFilePath2, encryptedInArray);
+                            otherFunctions.onlyEncrypted(encryptedInArray);
+
+                            var decryptedInArray = Container.DecryptData(privateKeyPath, encryptedInArray);
+                            otherFunctions.onlyDecrypted(decryptedInArray);
+                            string decrypted = Encoding.UTF8.GetString(decryptedInArray);
+                            File.WriteAllText(pathForDecrFile, decrypted);
+                            cspParams.DeleteKeyInCsp();
+                        }
+
                     } while (variant != "0");
                 }
 
@@ -412,7 +465,7 @@ namespace lab7
             {
                 rsa.PersistKeyInCsp = false;
                 rsa.ImportParameters(_privateKey);                 // getting private key for decryption
-                plain = rsa.Decrypt(dataToEncrypt, true);          // call Decrypt
+                plain = rsa.Decrypt(dataToEncrypt, false);          // call Decrypt
             }
             return plain;
         }
@@ -457,42 +510,17 @@ namespace lab7
             }
             return plain;
         }
-
-        public static byte[] EncryptData2(byte[] dataToEncrypt, string publicKeyPath, string path)
-        {
-            byte[] cipherbytes;
-            using (var rsa = new RSACryptoServiceProvider(2048))
-            {
-                rsa.PersistKeyInCsp = false;
-                rsa.FromXmlString(File.ReadAllText(publicKeyPath));
-                cipherbytes = rsa.Encrypt(dataToEncrypt, true);
-            }
-            File.WriteAllBytes(path, cipherbytes);
-            return cipherbytes;
-        }
     }
 
 
 
-    // TO SAVEAND GET BYTE ARRAY FROM BINARY FILE
-    //public class BinaryFile
-    //{
-    //    // TO SAVE BYTE ARRAY
-    //    public static void SaveByteArrayToFile(byte[] data, string filePath)
-    //    {
-    //        using var writer = new BinaryWriter(File.OpenWrite(filePath));
-    //        writer.Write(data);
-    //    }
-    //}
 
-
-
-    //XML FOR PUBLIC AND CSP FOR PRIVATE
+    //CSP FOR KEYS
     public class Container
     {
         // FOR ASSIGNING NEW PRIVATE KEY IN FILE
         const string ContainerName = "MyContainer";
-        public void AssignNewKey()
+        public static void AssignNewKey(string publicKeyPath, string privateKeyPath)
         {
             CspParameters cspParams = new CspParameters(1)
             {
@@ -500,9 +528,11 @@ namespace lab7
                 Flags = CspProviderFlags.UseMachineKeyStore,
                 ProviderName = "Microsoft Strong Cryptographic Provider"
             };
-            var rsa = new RSACryptoServiceProvider(cspParams)     // create a new instance of the RSACryptoServiceProvider
+            using (var rsa = new RSACryptoServiceProvider(2048))     // create a new instance of the RSACryptoServiceProvider
             {
-                PersistKeyInCsp = true         // pass the previously created CspParameters object to its constructor
+                rsa.PersistKeyInCsp = true;                                         // pass the previously created CspParameters object to its constructor
+                File.WriteAllText(privateKeyPath, rsa.ToXmlString(true));
+                File.WriteAllText(publicKeyPath, rsa.ToXmlString(false));
             };
         }
         // TO REMOVE A KEY FROM KEY CONTAINER
@@ -519,7 +549,7 @@ namespace lab7
             rsa.Clear();
         }
 
-        public byte[] EncryptData(byte[] dataToEncrypt)
+        public static byte[] EncryptData(byte[] dataToEncrypt, string publicKeyPath)
         {
             byte[] cipherbytes;
             var cspParams = new CspParameters
@@ -528,21 +558,21 @@ namespace lab7
             };
             using (var rsa = new RSACryptoServiceProvider(2048, cspParams))
             {
-                cipherbytes = rsa.Encrypt(dataToEncrypt, false);
+                rsa.PersistKeyInCsp = false;
+                rsa.FromXmlString(File.ReadAllText(publicKeyPath));
+                cipherbytes = rsa.Encrypt(dataToEncrypt, true);
             }
             return cipherbytes;
         }
 
-        public byte[] DecryptData(byte[] dataToDecrypt)
+        public static byte[] DecryptData(string privateKeyPath, byte[] dataToDecrypt)
         {
             byte[] plain;
-            var cspParams = new CspParameters        // construct a new CspParameters object
+            using (var rsa = new RSACryptoServiceProvider(2048))
             {
-                KeyContainerName = ContainerName     // load in the container name into the KeyContainerName property
-            };
-            using (var rsa = new RSACryptoServiceProvider(2048, cspParams))
-            {
-                plain = rsa.Decrypt(dataToDecrypt, false);
+                rsa.PersistKeyInCsp = false;
+                rsa.FromXmlString(File.ReadAllText(privateKeyPath));
+                plain = rsa.Decrypt(dataToDecrypt, true);            // decryption
             }
             return plain;
         }
@@ -588,9 +618,9 @@ namespace lab7
         public static void mainOutput(byte[] encrypted, byte[] dataInArray, byte[] decrypted)  // main output
         {
             Console.WriteLine(" -----------------------------------------------------------------------------------------------------------------------");
-            Console.WriteLine(" Encrypted Text:  " + Convert.ToBase64String(encrypted));
+            Console.WriteLine(" Encrypted Text:  " + Encoding.UTF8.GetString(encrypted));
             otherFunctions.prettyOutput(1);                                                     // some output for better look
-            Console.WriteLine(" Decrypted Text:  " + Encoding.Default.GetString(decrypted));
+            Console.WriteLine(" Decrypted Text:  " + Encoding.UTF8.GetString(decrypted));
             otherFunctions.prettyOutput(1);
             otherFunctions.CheckData(dataInArray, decrypted);
             otherFunctions.prettyOutput(2);
@@ -610,7 +640,14 @@ namespace lab7
         {
             Console.WriteLine(" Your data was successfully encrypted");
             Console.WriteLine(" -----------------------------------------------------------------------------------------------------------------------");
-            Console.WriteLine(" Encrypted Text:  " + Convert.ToBase64String(encryptedData));
+            Console.WriteLine(" Encrypted Text:  " + Encoding.UTF8.GetString(encryptedData));
+            otherFunctions.prettyOutput(1);
+        }
+        public static void onlyDecrypted(byte[] decryptedData)
+        {
+            Console.WriteLine(" Your data was successfully decrypted");
+            Console.WriteLine(" -----------------------------------------------------------------------------------------------------------------------");
+            Console.WriteLine(" Decrypted Text:  " + Encoding.UTF8.GetString(decryptedData));
             otherFunctions.prettyOutput(1);
         }
     }
