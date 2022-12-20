@@ -124,7 +124,7 @@ namespace System.Security.Principal
                             return true;
                         }
                         // if user
-                        else if (Protector.CheckHash(passwordHash, passwordHash))
+                        else if (Protector.CheckHash(_users.ElementAt(i).Value.PasswordHash, passwordHash))
                         {
                             Console.WriteLine("  | Password is correct. Access granted");
                             Console.WriteLine();
@@ -184,11 +184,14 @@ namespace System.Security.Principal
             if (CheckPassword(userName, password))           // Перевірка пароля
             {
                 string[] roles = { "User", "Admin" };
-                
-                var identity = new GenericIdentity(userName, password);            // Створюється екземпляр автентифікованого користувача
-                //var principal = new GenericPrincipal(identity, _users[userName].Roles);    // Виконується прив’язка до ролей, до яких належить користувач
+                var identity = new GenericIdentity(userName, password);            
+                // Створюється екземпляр автентифікованого користувача
+                //var principal = new GenericPrincipal(identity, _users[userName].Roles);    
                 var principal = new GenericPrincipal(identity, roles);
-                System.Threading.Thread.CurrentPrincipal = principal;  // Створений екземпляр автентифікованого користувача з відповідними ролями присвоюється потоку, в якому виконується програма
+                // Виконується прив’язка до ролей, до яких належить користувач
+                System.Threading.Thread.CurrentPrincipal = principal;  
+                // Створений екземпляр автентифікованого користувача з відповідними ролями присвоюється потоку,
+                // в якому виконується програма
             }
         }
 
@@ -282,9 +285,6 @@ namespace lab9
                         Console.WriteLine();
                         Protector.Register(username, password, role);             // calling registration command
                     }
-                    
-                    
-
                 }
 
                 //AUTHENTIFICATION
@@ -307,7 +307,6 @@ namespace lab9
                     Console.WriteLine("    Username            Role");
                     Console.WriteLine("--------------------------------");
                     Protector.DisplayAllUsers();                       // calling function for displaying all users
-
                 }
 
                 
