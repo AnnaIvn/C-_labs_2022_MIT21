@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "lab10": {
+      "commandName": "Project",
+      "commandLineArgs": "Loggin app"
+    }
+  }
+}
